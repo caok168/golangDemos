@@ -124,6 +124,23 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="go build test.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golangDemos" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/test.go" />
+      <package value="golangDemos" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build test.go" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="ToolWindowManager">
     <frame x="188" y="130" width="1625" height="937" extended-state="0" />
     <editor active="true" />
