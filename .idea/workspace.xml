@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d05103c6-a743-423c-8cb7-7f8a832b2eec" name="Default Changelist" comment="">
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
       <change afterPath="$PROJECT_DIR$/crondemo/demo1.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/channeldemo/demo5.go" afterDir="false" />
+>>>>>>> create channel demos
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,22 +26,38 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
           <entry key="go" value="10" />
+=======
+          <entry key="go" value="7" />
+>>>>>>> create channel demos
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
           <entry key="Go" value="10" />
+=======
+          <entry key="Go" value="7" />
+>>>>>>> create channel demos
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
           <entry key="go" value="161" />
+=======
+          <entry key="go" value="130" />
+>>>>>>> create channel demos
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
           <entry key="Go" value="161" />
+=======
+          <entry key="Go" value="130" />
+>>>>>>> create channel demos
         </counts>
       </usages-collector>
     </session>
@@ -77,7 +97,11 @@
           </provider>
         </entry>
       </file>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
       <file pinned="false" current-in-tab="false">
+=======
+      <file pinned="false" current-in-tab="true">
+>>>>>>> create channel demos
         <entry file="file://$PROJECT_DIR$/channeldemo/demo5.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
@@ -89,6 +113,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crondemo/demo1.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -101,6 +126,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> create channel demos
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/channeldemo/demo2.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -154,7 +181,10 @@
         <option value="$PROJECT_DIR$/channeldemo/demo3.go" />
         <option value="$PROJECT_DIR$/channeldemo/demo4.go" />
         <option value="$PROJECT_DIR$/channeldemo/demo5.go" />
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
         <option value="$PROJECT_DIR$/crondemo/demo1.go" />
+=======
+>>>>>>> create channel demos
       </list>
     </option>
   </component>
@@ -192,6 +222,7 @@
               <item name="golangDemos" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
             <path>
               <item name="golangDemos" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
@@ -232,6 +263,8 @@
               <item name="robfig" type="462c0819:PsiDirectoryNode" />
               <item name="cron" type="462c0819:PsiDirectoryNode" />
             </path>
+=======
+>>>>>>> create channel demos
           </expand>
           <select />
         </subPane>
@@ -332,7 +365,11 @@
     <frame x="217" y="204" width="1625" height="843" extended-state="0" />
     <editor active="true" />
     <layout>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25269157" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25269157" />
+>>>>>>> create channel demos
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -344,7 +381,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
       <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.43496504" />
+=======
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.43496504" />
+>>>>>>> create channel demos
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -417,6 +458,7 @@
           <folding>
             <element signature="e#14#39#0" expanded="true" />
           </folding>
+<<<<<<< 6a4614dee62af1a74b14c5134542ed6d81c9d0ab
         </state>
       </provider>
     </entry>
@@ -437,6 +479,8 @@
           <folding>
             <element signature="e#14#57#0" expanded="true" />
           </folding>
+=======
+>>>>>>> create channel demos
         </state>
       </provider>
     </entry>
