@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: test
+    command: postgres -c 'max_connections=10000'
+    ports:
+    - "5431:5432"
+
+  test:
+    build: ./
