@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+
+package proto;
+
+// Interface exported by the server.
+service RouteGuide {
+    // A Bidirectional streaming RPC.
+    //
+    // Accepts a stream of RouteNotes sent while a route is being traversed,
+    // while receiving other RouteNotes (e.g. from other users).
+    rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+}
+
+
+message Point {
+    int32 latitude = 1;
+    int32 longitude = 2;
+}
+
+// A RouteNote is a message sent while at a given point.
+message RouteNote {
+    // The location from which the message is sent.
+    Point location = 1;
+
+    // The message to be sent.
+    string message = 2;
+}

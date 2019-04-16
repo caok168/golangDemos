@@ -1,0 +1,35 @@
+syntax = "proto3";  //语法声明
+
+package proto; //包名
+
+// Greeter 微服务
+service Greeter {
+    // Sends a greeting
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+service Retrieval{
+    rpc RetrievalRepo(RetrievalRepoRequest) returns(RetrievalRepoResponse){}
+}
+
+// HelloRequest 请求数据格式
+message HelloRequest {
+    string name = 1;
+}
+
+// HelloReply 响应数据格式
+message HelloReply {
+    string message = 1;
+}
+
+message RetrievalRepoRequest{
+    int32 jobId = 1;
+}
+
+message RetrievalRepoResponse{
+    int32 repoId = 1;
+    string repoName = 2;
+    string personUuid = 3;
+    string identityNumber = 4;
+    int32 age = 5;
+}

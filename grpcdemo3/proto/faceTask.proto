@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package proto;
+
+service Engine {
+    rpc FaceExtract (FaceExtractRequest) returns (FaceExtractReply) {}
+}
+
+message FaceExtractRequest {
+    uint32 taskId = 1;
+    uint32 deviceDesc = 2; // device type + device id
+    string sourceImagePath = 3;
+}
+
+message FaceExtractReply {
+    uint32 taskId = 1;
+    oneof statusOrResult {
+        FaceExtractResult result = 2;
+        Status status = 3;
+    }
+}
+
+message FaceExtractResult {
+    ReplyType type = 1; // TASKSTATUS or TASKRESULT
+    string uuid = 2; // face uuid
+    bytes image = 3; // image bytes
+    uint32 imageSize = 4;
+    string imageType = 5;
+    bytes eigen = 6; // eigen bytes
+    uint32 eigenSize = 7;
+    map<string, string> attrs = 8; // face properties
+}
+
+message Status {
+    string state = 1;
+    uint32 code = 2;
+}
+
+enum ReplyType {
+    UNKNOWN = 0;
+    TASKRESULT = 1;
+    TASKSTATUS = 2;
+}
