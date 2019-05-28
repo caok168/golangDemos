@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+package ivs;
+
+service FaceRecognition {
+    // rpc GetResources() returns () {}
+
+    rpc FaceExtract (FaceExtractRequest) returns (FaceExtractReply) {}
+    // rpc FaceExtract (stream TaskRequest) returns (stream FaceExtractReply) {}
+
+    rpc FaceCompare (FaceCompareRequest) returns (stream FaceCompareReply) {}
+
+    rpc VideoRecognize (VideoRecognizeRequest) returns (stream VideoRecognizeReply) {}
+}
+
+// FaceExtract
+
+message FaceExtractRequest {
+    uint32 taskId = 1;
+    uint32 deviceDesc = 2; // device type + device id
+    string sourceImagePath = 3;
+}
+
+message FaceExtractReply {
+    uint32 taskId = 1;
+    oneof statusOrResult {
+        FaceExtractResult result = 2;
+        Status status = 3;
+    }
+}
+
+message FaceExtractResult {
+    string uuid = 1; // face uuid
+    bytes image = 2; // image bytes
+    string imageType = 3;
+    bytes eigen = 4; // eigen bytes
+    map<string, string> attrs = 5; // face properties
+}
+
+// FaceCompare
+
+message FaceCompareRequest {
+    uint32 taskId = 1; // task id
+    uint32 deviceDesc = 2; // device type + device id
+    cacheInfo sourceFacesPath = 3;
+    cacheInfo targetFacesPath = 4;
+    uint32 topN = 7;
+}
+
+message FaceCompareReply {
+    uint32 taskId = 1;
+    oneof statusOrResult {
+        FaceCompareResult result = 2;
+        Status status = 3;
+    }
+}
+
+message FaceCompareResult {
+    string repoId = 1;
+    string faceUuid = 2;
+    map<string, string> attrs = 5; // face attributes
+    repeated Matched matches = 4;
+}
+
+// VideoRecognize
+
+message VideoRecognizeRequest {
+    uint32 taskId = 1; // task id
+    uint32 deviceDesc = 2; // device type + device id
+    repeated cacheInfo targetRepos = 3;
+    SourceCamera sourceCamera = 4;
+    bool saveCapturedFace = 5;
+    string capturedPath = 6;
+}
+
+message SourceCamera {
+    uint32 id = 1;
+    string url = 2;
+}
+
+message VideoRecognizeReply {
+    uint32 taskId = 1;
+    oneof statusOrResultOrBoxes {
+        VideoRecognizeResult result = 2;
+        Status status = 3;
+        BoxInfos boxInfos = 4;
+    }
+}
+
+message VideoRecognizeResult {
+    string faceUuid = 1;
+    string path = 2; // snapshot image path
+    string imageType = 3;
+    map<string, string> attrs = 5; // face attributes
+    oneof timestampOrCaptureTime {
+        float timestamp = 6; // timestamp of video file
+        string captureTime = 7; // camera capture datetime
+    }
+    repeated Matched matches = 4;
+    bytes image = 8; // image bytes
+    bytes eigen = 9; // eigen bytes
+}
+
+message BoxInfos {
+    message BoxInfo {
+        uint32 x0 = 1;
+        uint32 y0 = 2;
+        uint32 x1 = 3;
+        uint32 y1 = 4;
+    }
+    repeated BoxInfo boxInfos = 1;
+}
+
+// Base
+
+message Status {
+    string state = 1;
+    uint32 code = 2;
+}
+
+message Matched {
+    string repoId = 1;
+    string faceUuid = 2;
+    float score = 3;
+}
+
+message cacheInfo {
+    string id = 1;
+    string cacheEigensPath = 2;
+    string cacheUuidsPath = 3;
+    float threshold = 4;
+}
