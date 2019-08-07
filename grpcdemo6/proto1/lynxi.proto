@@ -1,0 +1,176 @@
+syntax = "proto3";
+
+package Lynxi;
+
+service SmartClass {
+
+    // 启动一条 pipeline，可启动多条不同类型的 pipeline
+    rpc StartPipeline (PipelineRequest) returns(stream PipelineReply) {}
+    // 执行 pipeline 支持的各类的任务，以流的方式返回结果
+    rpc Exec(TaskRequest) returns(stream TaskReply) {}
+    // 在运行期间修改 pipeline 的参数，例如：显示/隐藏举手提示，显示/隐藏起立提示
+    rpc Modify( stream ModifyRequest) returns (ModifyReply) {}
+    // 停止模块
+    rpc Stop (StopRequest) returns (StopReply) {}
+
+}
+
+// 启动 pipeline 的参数
+// 不同 pipeline 定义自己的 pipelineRequestContent。
+message PipelineRequest {
+    string pipelineName = 1; // pipeline 名称，如果启动多条相同类型的 pipeline，名称必须不同，后续执行任务时要根据此名称来选择 pipeline
+    uint32 deviceDesc = 2; // device type + device id 设备类型和设备id，type：GPU/CPU/天机，id：0，1，2...
+    oneof pipelineRequestContent {
+        FrameExtractFrequency frameExtractFrequency = 3;
+    }
+}
+
+message FrameExtractFrequency{
+    uint32 Pose = 1;    //姿态检测模块抽帧策略
+    uint32 Detect = 2;  //检测模块抽帧策略
+    uint32 Face = 3;    //人脸识别模块抽帧策略
+}
+
+// pipeline 启动结果，可以包含每个 worker 的启动结果等详细信息
+message PipelineReply {
+    oneof pipelineReplyContent { // 每类 pipeline 定义自己的返回结构
+                                 Status status = 1;
+    }
+}
+
+// 执行任务的请求参数
+message TaskRequest {
+    uint32 taskId = 1; // 任务的唯一编号，唯一标识一条请求
+    string pipelineName = 2;
+    oneof taskRequestContent {
+        SmartClassInfo smartClassInfo = 3;
+    }
+}
+
+message SmartClassInfo{
+    string configFilePath = 1; // //算法层读所取的配置文件的路径
+}
+
+// 任务执行结果
+message TaskReply {
+    uint32 taskId = 1; // 任务的唯一编号
+    oneof taskReplyContent { // 任务的执行结果
+                             SporadicStreamDataReply sporadicData = 2;  //图像偶发事件
+                             PeriodicStreamDataReply periodicData = 3;  //图像周期事件
+                             AudioStreamDataReply audioData = 4;        //声音事件
+    }
+}
+
+// 停止请求(Request)
+message StopRequest{
+    uint32 taskId = 1; // 任务的唯一编号，唯一标识一条请求
+    string pipelineName = 2;
+}
+
+
+// 停止状态(Status)
+message StopReply{
+    Status status = 1;
+}
+
+// 偶发
+message SporadicStreamDataReply {
+    int32 camIdx = 1;
+    int32 frameIdx = 2;
+    int64 timeStamp = 3;
+    bytes image = 4;
+    HandsUp handsUp = 5;
+    StandUp standUp = 6;
+    Patrol teacherPatrol = 7;
+    ProbSolve probSolve = 8;
+}
+
+// 举手
+message HandsUp {
+    repeated BBox bbox = 1;
+}
+
+// 站立
+message StandUp {
+    repeated BBox bbox = 1;
+}
+
+// 巡视
+message Patrol {
+    repeated BBox bbox = 1;
+}
+
+// 讲题
+message ProbSolve {
+    repeated BBox bbox = 1;
+}
+
+// 周期
+message PeriodicStreamDataReply{
+    int32 camIdx = 1;
+    int32 frameIdx = 2;
+    int64 timeStamp = 3;
+    bytes image = 4;
+    repeated Emotion emotion = 5;
+    // Posture改成Attention.
+    repeated Attention attention = 6;
+}
+
+// 音频流
+message AudioStreamDataReply{
+    string startTime = 1;
+    string endTime = 2;
+    string soundType = 3; // FIXME [老师、学生、其他声音]
+}
+
+// 表情
+message Emotion {
+    BBox bbox = 1;
+    string emotion = 2;
+}
+
+// 头部姿态
+message Attention {
+    BBox bbox = 1;
+    string attention = 2;
+}
+
+// 框 由原来的(x, y, w, h)改成现在的(x1, y1, x2, y2)
+message BBox {
+    string identity = 1; // FIXME [0:student; 1:teacher]
+    string name = 2;
+    int32 x1 = 3;
+    int32 y1 = 4;
+    int32 x2 = 5;
+    int32 y2 = 6;
+}
+
+
+
+message ModifyRequest {
+    string pipelineName = 1; // pipeline 名称，如果启动多条相同类型的 pipeline，名称必须不同，后续执行任务时要根据此名称来选择 pipeline
+    oneof ModifyRequestContent{
+        ShowControl showControl = 2; // 011100: 举手，站立, ...
+    }
+}
+
+message ModifyReply{
+    string pipelineName = 1;
+    oneof modifyReplyContent { // 每类 pipeline 定义自己的返回结构
+                               Status status = 2;
+    }
+}
+
+message ShowControl{
+    bool handsUp = 1;       //标识学生举手辅助线（学生）
+    bool standUp = 2;       //标识学生起立辅助线（学生）
+    bool teacherPatorl = 3; //标识老师巡视辅助线（老师）
+    bool probSolve = 4;     //标识黑板讲题辅助线（老师及学生）
+    bool humanFace = 5;     //标识表情和角度人脸边框（老师及学生）
+}
+
+
+message Status{
+    int32 code = 1; // 0 加载正确 ；1 加载失败
+    string msg = 2; // 失败原因
+}

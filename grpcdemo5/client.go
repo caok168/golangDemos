@@ -2,15 +2,19 @@ package main
 
 import (
 	"bufio"
-	"context"
-	pb "golangDemos/grpcdemo5/proto"
-	"google.golang.org/grpc"
 	"io"
 	"log"
 	"os"
+	pb "golangDemos/grpcdemo5/proto"
+	"google.golang.org/grpc"
+	"context"
 )
 
 func main() {
+
+}
+
+func test(){
 	conn, err := grpc.Dial("localhost:3000", grpc.WithInsecure())
 	if err != nil {
 		log.Printf("连接失败：【%v】", err)

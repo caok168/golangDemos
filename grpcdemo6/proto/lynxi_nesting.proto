@@ -25,11 +25,13 @@ package var_length;
 
 // 定义服务.
 service Greeter {
-  // ① 简单rpc.
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+//  // ① 简单rpc.
+//  rpc SayHello (HelloRequest) returns (HelloReply) {}
+//
+//  // ② 应答式流rpc.
+//  rpc LstSayHello (HelloRequest) returns (stream HelloReply) {}
 
-  // ② 应答式流rpc.
-  rpc LstSayHello (HelloRequest) returns (stream HelloReply) {}
+  rpc StreamSayHello(stream HelloRequest) returns (stream HelloReply){}
 }
 
 // The request message containing the user's name.
