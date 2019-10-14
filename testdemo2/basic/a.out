@@ -1,0 +1,4 @@
+mode: set
+golangDemos/testdemo2/basic/basic.go:8.13,10.2 1 0
+golangDemos/testdemo2/basic/basic.go:12.24,14.2 1 1
+golangDemos/testdemo2/basic/basic.go:16.34,20.2 3 1
