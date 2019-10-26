@@ -69,7 +69,6 @@ type LoginResponse struct {
 	Data   User   `json:"data"`
 }
 
-
 // ParseToStr 将map中的键值对输出成querystring形式
 func ParseToStr(mp map[string]string) string {
 	values := ""

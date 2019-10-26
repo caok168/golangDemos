@@ -2,9 +2,9 @@ package dingrobot
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"net/http"
-	"encoding/json"
 )
 
 const defaultAPI = "https://oapi.dingtalk.com/robot/send"

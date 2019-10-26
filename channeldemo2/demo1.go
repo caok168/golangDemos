@@ -36,8 +36,6 @@ func worker(id int, c chan int) {
 	}
 }
 
-
-
 func main() {
 	chanDemo()
 }

@@ -4,7 +4,7 @@ import "fmt"
 
 type greeting string
 
-func (g greeting) Greet(){
+func (g greeting) Greet() {
 	fmt.Println("Hello Universe")
 }
 
