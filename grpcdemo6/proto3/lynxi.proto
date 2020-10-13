@@ -1,0 +1,28 @@
+// author: samuel ko
+syntax = "proto3";
+package lynxi;
+
+service Face{
+    // 最基本的形式.
+    rpc FaceData(TaskRequest) returns (ImageFeatureExtractReply) {}
+}
+
+message TaskRequest{
+    uint32 taskId=1; //任务编号
+    string pipelineName=2; //pipeline名称
+    string uuid=3; //用户uuid
+    bytes rawinput=4;//原始数据
+}
+
+message ImageFeatureExtractReply{
+    string uuid=1; //用户uuid
+    BboxRaw Rawbboxraw=2;
+    repeated string feature=3;//String形式的人脸特征
+}
+
+message BboxRaw{
+    int32 x=1;//矩形框左上角x值
+    int32 y=2;//矩形框左上角y值
+    int32 h=3;//矩形框高度
+    int32 w=4;//矩形框宽度
+}
